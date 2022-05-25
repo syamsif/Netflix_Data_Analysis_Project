@@ -1,0 +1,50 @@
+---
+title: "Netflix_Movie_Project"
+author: "Syamsi"
+date: '2022-05-25'
+output: html_document
+---
+
+The purpose of this analysis is to practice analyzing and visualizing data, and hopefully communicate some best-practices along the way.
+
+This project will use the following dataset:
+Dataset source: https://www.kaggle.com/datasets/victorsoeiro/netflix-tv-shows-and-movies
+
+
+Bussiness Task:
+Which movie had biggest and lowest imdb Score all the time?
+Which genre had biggest imdb score for time frame?
+
+```{r packages, include=FALSE}
+#load packages
+library(tidyverse)
+library(plyr)
+library(lubridate)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+```
+
+Load csv to R
+
+```
+movie_title<-read_csv("titles.csv")
+```
+
+Check the data integration, column name, and the size of rows and columns
+
+```
+head(movie_title)
+colnames(movie_title)
+str(movie_title)
+dim(movie_title)
+```
+
+```{r pressure, echo=FALSE}
+drama_score %>% 
+  mutate(genres=fct_reorder(genres,desc(imdb_score))) %>%
+  ggplot(mapping=aes(x=runtime,y=imdb_score,color=genres))+ 
+  geom_point()+
+  labs(title="Runtime (minutes) VS imdb score",
+       subtitle = "for any movie in 1953-2022")
+```
